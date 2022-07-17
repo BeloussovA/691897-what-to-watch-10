@@ -1,4 +1,6 @@
-export const FilmsData = [{
+import { PromoFilmType } from '../types/type';
+
+export const FilmsData: PromoFilmType[] = [{
   id: 1,
   filmTitle: 'The Grand Budapest Hotel',
   genre: 'Drama',
@@ -12,7 +14,7 @@ export const FilmsData = [{
 },
 ];
 
-export const FilmSetting = {
+export const FilmSetting: PromoFilmType = {
   id: 1,
   filmTitle: 'The Grand Budapest Hotel',
   genre: 'Drama',

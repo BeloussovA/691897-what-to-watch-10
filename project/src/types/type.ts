@@ -3,6 +3,5 @@ export type PromoFilmType = {
   filmTitle: string,
   genre: string,
   releaseDate: number,
-  filmsData: any
 };
 

@@ -4,16 +4,13 @@ import MainPage from '../../pages/main-page/main-page';
 // import Film from '../../pages/film/film';
 // import AddReview from '../../pages/add-review/add-review';
 // import Player from '../../pages/player/player';
-import {PromoFilmType} from '../../types/type';
+import { FilmSetting, FilmsData } from '../../utils/utils';
 
-function App({id, filmTitle, genre, releaseDate, filmsData}: PromoFilmType) : JSX.Element {
+function App() : JSX.Element {
   return (
     <MainPage
-      id={id}
-      filmTitle={filmTitle}
-      genre={genre}
-      releaseDate={releaseDate}
-      filmsData={filmsData}
+      filmSetting={FilmSetting}
+      filmsData={FilmsData}
     />
     // <
     //   SignIn />

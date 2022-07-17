@@ -1,7 +1,12 @@
 import FilmCard from '../../components/film-card/film-card';
 import {PromoFilmType} from '../../types/type';
 
-function MainPage({id, filmTitle, genre, releaseDate, filmsData}: PromoFilmType): JSX.Element {
+type Props = {
+  filmSetting: PromoFilmType,
+  filmsData: PromoFilmType[]
+};
+
+function MainPage({filmSetting, filmsData}: Props): JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -52,10 +57,10 @@ function MainPage({id, filmTitle, genre, releaseDate, filmsData}: PromoFilmType)
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{filmTitle}</h2>
+              <h2 className="film-card__title">{filmSetting.filmTitle}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{releaseDate}</span>
+                <span className="film-card__genre">{filmSetting.genre}</span>
+                <span className="film-card__year">{filmSetting.releaseDate}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -142,7 +147,7 @@ function MainPage({id, filmTitle, genre, releaseDate, filmsData}: PromoFilmType)
           </ul>
 
           <div className="catalog__films-list">
-            {filmsData.map((film: any) => <FilmCard key = {film.id} filmTitle = {film.filmTitle} />)}
+            {filmsData.map((film) => <FilmCard key = {film.id} filmTitle = {film.filmTitle} />)}
           </div>
 
           <div className="catalog__more">
