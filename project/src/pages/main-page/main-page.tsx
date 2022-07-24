@@ -1,5 +1,5 @@
 import FilmCard from '../../components/film-card/film-card';
-import {PromoFilmType} from '../../types/type';
+import { PromoFilmType } from '../../types/type';
 
 type Props = {
   filmSetting: PromoFilmType,

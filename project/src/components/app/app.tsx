@@ -1,12 +1,14 @@
-import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { AppRoute, AuthorizationStatus } from '../const';
 import MainPage from '../../pages/main-page/main-page';
 import SignIn from '../../pages/login/login';
-import MyList from '../../pages/my-list/my-list';
-// import Film from '../../pages/film/film';
-// import AddReview from '../../pages/add-review/add-review';
+import NotFoundScreen from '../../pages/not-found-screen/Not-found-screen';
+import Film from '../../pages/film/film';
+import AddReview from '../../pages/add-review/add-review';
 import Player from '../../pages/player/player';
 import { FilmSetting, FilmsData } from '../../utils/utils';
+import PrivateRoute from '../private-route/private-route';
+import MyList from '../../pages/my-list/my-list';
 
 function App() : JSX.Element {
   return (
@@ -14,32 +16,38 @@ function App() : JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage filmSetting={FilmSetting} filmsData={FilmsData}/>}
+          element={<MainPage filmSetting={ FilmSetting } filmsData={ FilmsData }/>}
         />
         <Route
           path={AppRoute.MyList}
-          element={<MyList />}
+          element={
+            <PrivateRoute
+              authorizationStatus={AuthorizationStatus.NoAuth}
+            >
+              <MyList />
+            </PrivateRoute>
+          }
         />
-        {/* <Route
+        <Route
           path={AppRoute.Film}
-          element={<GenreQuestionScreen />}
-        /> */}
+          element={<Film />}
+        />
         <Route
           path={AppRoute.SignIn}
           element={<SignIn />}
         />
-        {/* <Route
+        <Route
           path={AppRoute.AddReview}
-          element={<WinScreen />}
-        /> */}
+          element={<AddReview />}
+        />
         <Route
           path={AppRoute.Player}
           element={<Player />}
         />
-        {/* <Route
+        <Route
           path="*"
           element={<NotFoundScreen />}
-        /> */}
+        />
       </Routes>
     </BrowserRouter>
     // <MainPage
