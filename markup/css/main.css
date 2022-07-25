@@ -1440,17 +1440,3 @@ main {
   color: #fff;
   background: #fd612ead;
   border-radius: 15px; }
-
-.error-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between; }
-
-h1.error-page__heading {
-  padding: 25px;
-  font-size: 55px; }
-
-p.error-page__text {
-  font-size: 30px;
-  font-weight: 700; }

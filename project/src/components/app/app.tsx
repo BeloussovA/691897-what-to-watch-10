@@ -29,41 +29,31 @@ function App() : JSX.Element {
           }
         />
         <Route
-          path={AppRoute.Film}
-          element={<Film />}
-        />
+          path={AppRoute.Films}
+        >
+          <Route
+            path={AppRoute.Film}
+            element={<Film />}
+          />
+          <Route
+            path={AppRoute.AddReview}
+            element={<AddReview />}
+          />
+        </Route>
         <Route
           path={AppRoute.SignIn}
           element={<SignIn />}
-        />
-        <Route
-          path={AppRoute.AddReview}
-          element={<AddReview />}
         />
         <Route
           path={AppRoute.Player}
           element={<Player />}
         />
         <Route
-          path="*"
+          path={AppRoute.NotFoundScreen}
           element={<NotFoundScreen />}
         />
       </Routes>
     </BrowserRouter>
-    // <MainPage
-    //   filmSetting={FilmSetting}
-    //   filmsData={FilmsData}
-    // />
-    // <
-    //   SignIn />
-    // <
-    //   MyList />
-    // <
-    //   Film />
-    // <
-    //   AddReview />
-    // <
-    //   Player />
   );
 }
 
