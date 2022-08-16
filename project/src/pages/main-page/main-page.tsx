@@ -1,12 +1,19 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../components/const';
 import FilmCard from '../../components/film-card/film-card';
-import { PromoFilmType } from '../../types/type';
+import Header from '../../components/header/header';
+import { PromoFilmType, filmType } from '../../types/type';
 
 type Props = {
   filmSetting: PromoFilmType,
-  filmsData: PromoFilmType[]
+  filmsData: filmType[]
 };
 
 function MainPage({filmSetting, filmsData}: Props): JSX.Element {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [activeFilm, setActiveFilm] = useState<string | null>(null);
+
   return (
     <>
       <section className="film-card">
@@ -19,31 +26,7 @@ function MainPage({filmSetting, filmsData}: Props): JSX.Element {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header film-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img
-                  src="img/avatar.jpg"
-                  alt="User avatar"
-                  width="63"
-                  height="63"
-                />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
-            </li>
-          </ul>
-        </header>
+        <Header />
 
         <div className="film-card__wrap">
           <div className="film-card__info">
@@ -95,59 +78,59 @@ function MainPage({filmSetting, filmsData}: Props): JSX.Element {
 
           <ul className="catalog__genres-list">
             <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">
+              <Link to="#" className="catalog__genres-link">
                 All genres
-              </a>
+              </Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
+              <Link to="#" className="catalog__genres-link">
                 Comedies
-              </a>
+              </Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
+              <Link to="#" className="catalog__genres-link">
                 Crime
-              </a>
+              </Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
+              <Link to="#" className="catalog__genres-link">
                 Documentary
-              </a>
+              </Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
+              <Link to="#" className="catalog__genres-link">
                 Dramas
-              </a>
+              </Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
+              <Link to="#" className="catalog__genres-link">
                 Horror
-              </a>
+              </Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
+              <Link to="#" className="catalog__genres-link">
                 Kids & Family
-              </a>
+              </Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
+              <Link to="#" className="catalog__genres-link">
                 Romance
-              </a>
+              </Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
+              <Link to="#" className="catalog__genres-link">
                 Sci-Fi
-              </a>
+              </Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
+              <Link to="#" className="catalog__genres-link">
                 Thrillers
-              </a>
+              </Link>
             </li>
           </ul>
 
           <div className="catalog__films-list">
-            {filmsData.map((film) => <FilmCard key = {film.id} filmTitle = {film.filmTitle} />)}
+            {filmsData.map((film) => <FilmCard key = {film.id} film = {film} setActiveFilm={setActiveFilm}/>)}
           </div>
 
           <div className="catalog__more">
@@ -159,11 +142,11 @@ function MainPage({filmSetting, filmsData}: Props): JSX.Element {
 
         <footer className="page-footer">
           <div className="logo">
-            <a className="logo__link logo__link--light">
+            <Link className="logo__link logo__link--light" to={AppRoute.Main}>
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">

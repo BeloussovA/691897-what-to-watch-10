@@ -6,25 +6,30 @@ import NotFoundScreen from '../../pages/not-found-screen/Not-found-screen';
 import Film from '../../pages/film/film';
 import AddReview from '../../pages/add-review/add-review';
 import Player from '../../pages/player/player';
-import { FilmSetting, FilmsData } from '../../utils/utils';
+import { FilmSetting } from '../../utils/utils';
 import PrivateRoute from '../private-route/private-route';
 import MyList from '../../pages/my-list/my-list';
+import { filmType } from '../../types/type';
 
-function App() : JSX.Element {
+type AppProps = {
+  films: filmType[],
+};
+
+function App({films}:AppProps) : JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage filmSetting={ FilmSetting } filmsData={ FilmsData }/>}
+          element={<MainPage filmSetting={ FilmSetting } filmsData={ films }/>}
         />
         <Route
           path={AppRoute.MyList}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <MyList />
+              <MyList filmsData={films}/>
             </PrivateRoute>
           }
         />
@@ -37,7 +42,7 @@ function App() : JSX.Element {
           />
           <Route
             path={AppRoute.AddReview}
-            element={<AddReview />}
+            element={<AddReview film={films[0]}/>}
           />
         </Route>
         <Route
@@ -46,7 +51,7 @@ function App() : JSX.Element {
         />
         <Route
           path={AppRoute.Player}
-          element={<Player />}
+          element={<Player film={films[0]}/>}
         />
         <Route
           path={AppRoute.NotFoundScreen}

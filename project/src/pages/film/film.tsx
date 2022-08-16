@@ -1,7 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { AppRoute } from '../../components/const';
+import { FilmsData } from '../../utils/utils';
 
 function Film(): JSX.Element {
+  const {id} = useParams();
+  const film = FilmsData.find((filmData) => String(filmData.id) === id);
+  if (!film) {
+    return <Navigate to={AppRoute.NotFoundScreen}/>;
+  }
   return (
     <>
       <section className="film-card film-card--full">
@@ -28,14 +34,14 @@ function Film(): JSX.Element {
                 </div>
               </li>
               <li className="user-block__item">
-                <a className="user-block__link">Sign out</a>
+                <Link className="user-block__link" to={AppRoute.SignIn}>Sign out</Link>
               </li>
             </ul>
           </header>
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{film.filmTitle}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">Drama</span>
                 <span className="film-card__year">2014</span>
@@ -71,13 +77,13 @@ function Film(): JSX.Element {
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
+                    <Link to="#" className="film-nav__link">Overview</Link>
                   </li>
                   <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
+                    <Link to="#" className="film-nav__link">Details</Link>
                   </li>
                   <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
+                    <Link to="#" className="film-nav__link">Reviews</Link>
                   </li>
                 </ul>
               </nav>
@@ -114,7 +120,7 @@ function Film(): JSX.Element {
                 <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
               </div>
               <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
+                <Link className="small-film-card__link" to={AppRoute.Films}>Fantastic Beasts: The Crimes of Grindelwald</Link>
               </h3>
             </article>
 
@@ -123,7 +129,7 @@ function Film(): JSX.Element {
                 <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
               </div>
               <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
+                <Link className="small-film-card__link" to={AppRoute.Films}>Bohemian Rhapsody</Link>
               </h3>
             </article>
 
@@ -132,7 +138,7 @@ function Film(): JSX.Element {
                 <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
               </div>
               <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Macbeth</a>
+                <Link className="small-film-card__link" to={AppRoute.Films}>Macbeth</Link>
               </h3>
             </article>
 
@@ -141,7 +147,7 @@ function Film(): JSX.Element {
                 <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
               </div>
               <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Aviator</a>
+                <Link className="small-film-card__link" to={AppRoute.Films}>Aviator</Link>
               </h3>
             </article>
           </div>
@@ -149,11 +155,11 @@ function Film(): JSX.Element {
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
+            <Link to={AppRoute.Main} className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
